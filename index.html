@@ -1,0 +1,44 @@
+<html>
+<head>
+<style>
+#counterText {
+	color:red;
+	font-weight: bold;
+}
+button {
+	display: block;
+	margin: 5px 0 5px 0;
+}
+</style>
+</head>
+<body>
+<button id="counter">Counter</button>
+<span>Button has been pressed </span><span id="counterText">0</span><span> times</span>
+<button id="showCookie">Show Cookie</button>
+<div><span>Time elapsed: </span><span id="timeElapsed"></span></div>
+<script>
+var count = 0;
+var pageOpened = (new Date).getTime();
+var counterText = document.getElementById("counterText");
+var timeElapsedText = document.getElementById("timeElapsed");
+var showCookieButton = document.getElementById("showCookie");
+counter = document.getElementById("counter");
+document.cookie = "name=1; expires=Wednesday, 01-Aug-2040 08:00:00 GMT";
+
+function showCookie() {
+	alert("Your Cookie is: " + document.cookie);
+}
+function incrementCounter() {
+	count++;
+	counterText.innerHTML = count;
+}
+function updateTimeOpen() {
+	var timeElapsed = (new Date).getTime() - pageOpened;
+	timeElapsedText.innerHTML = (timeElapsed / 1000);
+}
+counter.addEventListener("click", incrementCounter);
+showCookieButton.addEventListener("click", showCookie);
+window.setInterval(updateTimeOpen, 100);
+</script>
+</body>
+</html>
